@@ -1,0 +1,182 @@
+CREATE TABLE users (
+  user_id NUMBER PRIMARY KEY,
+   user_name varchar2(255) NOT NULL,
+  password varchar2(255),
+  type varchar2(255)
+);
+
+ 
+
+ALTER TABLE users 
+ADD user_name varchar2(255) NOT NULL;
+
+ 
+
+alter table users drop column username;
+
+ 
+
+delete  users;
+
+ 
+
+CREATE TABLE admin (
+  user_id NUMBER PRIMARY KEY,
+  admin_name varchar2(255),
+  admin_contact varchar2(255),
+  admin_email_id varchar2(255)
+);
+
+ 
+
+CREATE TABLE customer (
+  customer_id NUMBER PRIMARY KEY,
+  user_id NUMBER NOT NULL UNIQUE,
+  customer_name varchar2(255),
+  customer_phone VARCHAR(20),
+  customer_email_id varchar2(255),
+  customer_age number(10),
+  customer_gender varchar2(255) 
+);
+
+ 
+
+ALTER TABLE customer 
+ADD user_name varchar2(255) NOT NULL;
+
+ 
+
+alter table customer drop column user_name;
+
+ 
+
+ 
+
+CREATE SEQUENCE cust_seq START WITH 1;
+
+ 
+
+CREATE OR REPLACE TRIGGER cust_bir 
+BEFORE INSERT ON customer 
+FOR EACH ROW
+  BEGIN
+      SELECT cust_seq.NEXTVAL
+      INTO   :new.customer_id
+      FROM   dual;
+    END;
+
+ 
+
+CREATE TABLE account (
+  account_id number PRIMARY KEY,
+  interest_rate DOUBLE PRECISION,
+  balance DOUBLE PRECISION,
+  date_of_opening VARCHAR2(20),
+  min_balance DOUBLE PRECISION,
+  fine DOUBLE PRECISION,
+  amount DOUBLE PRECISION,
+  months number(10),
+  penalty_amount DOUBLE PRECISION,
+  customer_id number  NOT NULL,
+  account_type NUMBER
+);
+
+ 
+
+
+ALTER TABLE account 
+ADD is_active NUMBER; 
+
+ 
+
+CREATE TABLE transaction (
+  transaction_id number PRIMARY KEY,
+  amount DOUBLE PRECISION,
+  transaction_type varchar2(255),
+  transaction_date_time DATE,
+  transaction_status varchar2(255),
+  transaction_remarks varchar2(255),
+  beneficiary_id number NOT NULL,
+  account_id number NOT NULL
+);
+
+ 
+
+CREATE TABLE nominee (
+  nominee_id number PRIMARY KEY,
+  name varchar2(255),
+  govt_id varchar2(255),
+  govt_id_type varchar2(255),
+  phone_no varchar2(255),
+  relation varchar2(255)
+);
+
+ 
+
+
+CREATE TABLE account_nominee (
+  account_nominee_id NUMBER PRIMARY KEY,
+  account_id number NOT NULL,
+  nominee_id number NOT NULL 
+);
+CREATE SEQUENCE acc_nom_seq START WITH 1;
+
+ 
+
+CREATE OR REPLACE TRIGGER acc_nom_bir 
+BEFORE INSERT ON account_nominee 
+FOR EACH ROW
+  BEGIN
+      SELECT acc_nom_seq.NEXTVAL
+      INTO   :new.account_nominee_id
+      FROM   dual;
+    END;
+
+ 
+
+CREATE TABLE beneficiary (
+  beneficiary_id number PRIMARY KEY,
+  beneficiary_name varchar2(255),
+  beneficiary_account_no number,
+  ifsc varchar2(255),
+  account_type varchar2(255),
+  account_id number NOT NULL
+);
+
+ 
+
+ALTER TABLE beneficiary 
+ADD is_active NUMBER; 
+
+ 
+
+
+ALTER TABLE admin ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+
+ 
+
+ALTER TABLE customer ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+
+ 
+
+ALTER TABLE account ADD FOREIGN KEY (customer_id) REFERENCES customer (customer_id);
+
+ 
+
+ALTER TABLE transaction ADD FOREIGN KEY (account_id) REFERENCES account (account_id);
+
+ 
+
+ALTER TABLE account_nominee ADD FOREIGN KEY (account_id) REFERENCES account (account_id);
+
+ 
+
+ALTER TABLE account_nominee ADD FOREIGN KEY (nominee_id) REFERENCES nominee (nominee_id);
+
+ 
+
+ALTER TABLE beneficiary ADD FOREIGN KEY (account_id) REFERENCES account (account_id);
+
+ 
+
+ALTER TABLE transaction ADD FOREIGN KEY (beneficiary_id) REFERENCES beneficiary (beneficiary_id);
