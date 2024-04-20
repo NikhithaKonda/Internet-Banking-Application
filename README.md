@@ -5,4 +5,7 @@ An internet banking application comprises modules for account management, admini
 **Files:**
 
 In the src folder, all the front end related files where you could see files belong to Javascript, Typescript, Angular, CSS, HTML, BootStrap with all the modules of the application. 
-In the 
+
+In the Internet-Banking-Application folder, all the files related to backend are present with all the classes for all modules.
+
+While in frontend tables folder there is data related to all the tables creation are present 
