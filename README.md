@@ -11,8 +11,10 @@ This repository is dedicated to the implementation of Internet Banking Applicati
 
 ## Content
 
+
+
 ## Details
-Admin functionality oversees system management, user roles, and report generation. Users manage their beneficiaries and nominees, enabling fund transfers and account inheritance designations. Transactions encompass internal and external transfers, bill payments, and online purchases, ensuring secure and compliant financial operations. The user module governs authentication, registration, and access control. Together, these modules form a comprehensive platform for convenient, secure, and efficient online banking services, prioritizing user experience, reliability, and regulatory compliance.
+Admin functionality oversees system management, user roles, and report generation. Users manage their beneficiaries and nominees, enabling fund transfers and account inheritance designations. Transactions encompass internal and external transfers, bill payments, and online purchases, ensuring secure and compliant financial operations. The user module governs authentication, registration, and access control. Together, these modules form a comprehensive platform for convenient, secure, and efficient online banking services, prioritizing user experience, reliability, and regulatory compliance.  
 
 ## Implementation
 
