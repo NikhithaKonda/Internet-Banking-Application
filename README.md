@@ -1,13 +1,7 @@
 # Internet-Banking-Application
 
 ## Authors
-Nikhitha Konda
-
-Karthik
- 
-Likhitha Reddy
-
-Puneeth Kumar
+Nikhitha Konda - MS in CS from University of Central Florida
 
 ## Introduction
 This repository is dedicated to the implementation of Internet Banking Application. An internet banking application comprises modules for account management, administration, beneficiaries, customers, nominees, transactions, and users. The account module handles account-related operations like creation, updates, and balance inquiries. 
